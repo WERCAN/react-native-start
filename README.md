@@ -10,4 +10,4 @@ SECOND : `expo init AwesomeProject`
 
 THIRD: `cd AwesomeProject`
 
-FINAL : `yarn start # you can also use: expo start`
+FINALLY : `yarn start # you can also use: expo start`
