@@ -1,21 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+import {IntroScreen, DetailScreen,ListScreen,CreditsScreen,ThemeScreen} from './src/screens'
 
-export default function App() {
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const MainFlow=()=>{
+  return(
+      <Stack.Navigator initialRouteName="Intro">
+        <Stack.Screen name="Intro" component={IntroScreen} />
+        <Stack.Screen name="Detail" component={DetailScreen} options={{ title: 'Overview' }}/>
+        <Stack.Screen name="List" component={ListScreen} />
+      </Stack.Navigator>
+  )
+}
+
+const App=()=>{
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={MainFlow} />
+        <Drawer.Screen name="Credits" component={CreditsScreen} />
+        <Drawer.Screen name="Themes" component={ThemeScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
